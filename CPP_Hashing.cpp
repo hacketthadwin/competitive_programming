@@ -114,35 +114,50 @@ template <typename A>void __print(const A &x);template <typename A, typename B>v
 #else
 #define debug(...)
 #endif
+struct pair_hash {  //this is for unordered map
+    size_t operator()(const pair<ll,ll> &p) const {
+        return hash<ll>()(p.first) ^ (hash<ll>()(p.second) << 1);
+    }
+};
 
+struct triple_hash {   //this is used for unordered_set and it stores three things- those are first hash_pairs and then size of substring, this is because i also need to that hash_pair values are correct but is for same length or different length substrings
+    size_t operator()(const tuple<ll, ll, int>& p) const {
+        auto [a, b, c] = p;
+        return hash<ll>()(a) ^ (hash<ll>()(b) << 1) ^ (hash<int>()(c) << 2);
+    }
+};
+//    unordered_set<tuple<ll, ll, int>, triple_hash> set1;
+//     tie(h1, h2, len) = st;    //this is used to unpack the tuple
 /**************CODE_BEGINS_HERE************************************************/
-
+//very tough implementation problem, idea was simple, but implementation was tough
 void solve()
 {   
-    string s,t;
-    cin >> s>>t;
-    int n=s.size();
-    int m=t.size();
-    Hashing hs1(s), hs2(t);
-    vector<ll> hash1;
-    vector<ll> hash2= hs2.substringHash(0, m - 1);
-    int count=0;
-    for (int i = 0; i <= n - m; i++) {
-        hash1 = hs1.substringHash(i, i + m - 1);
-        if (hash1 == hash2) {
-            count++;
+    string s;
+    cin >> s;
+    int n = s.length();
+    vector<ll> hs1;
+    vector<ll> hs2;
+    vector<ll> hs3;
+    Hashing hs(s);
+
+    unordered_set<tuple<ll, ll, int>, triple_hash> set1;
+
+    for (int i = 0; i < n - 1; i++) {
+        hs1 = hs.substringHash(0, i);
+        hs2 = hs.substringHash(n - i - 1, n - 1);
+        if (hs1 == hs2) {
+            set1.insert({hs1[0], hs1[1], i + 1});  // i + 1 is the length of the substring
         }
     }
-    cout << count << endl;
+
 }
+
 
 /**************CODE_ENDS_ HERE************************************************/
 signed main()
 {
     fastio();
    int t=1;
-//    cin>>t;
+    //cin>>t;
    while(t--){solve();}
 }
-
-//NOTE: Unordered Map don't have pair as a key directly, you need to define a custom function to use this
