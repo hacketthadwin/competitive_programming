@@ -6,7 +6,7 @@
     {
         // dp[x] = # of subsets seen so far whose op‐value is exactly x
         vector<long long> dp(maxState + 1, 0);
-        dp[              0  ] = 1;   // the empty subset has “neutral” value:
+        dp[0] = 1;   // the empty subset has “neutral” value:
                                      //   0 for OR, 0 for XOR, all‐1’s for AND
         for (int num : arr) {
             if (iterateHighToLow) {
