@@ -1,4 +1,4 @@
-const int letters = 26;
+static const int letters = 26;
 
 struct TrieNode {
     vector<int> children;
