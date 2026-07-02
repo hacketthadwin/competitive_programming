@@ -23,7 +23,7 @@ typedef vector<pii> vii;
 #define REVERSEA(arr, sz) reverse(ALLA(arr, sz))
 #define PERMUTE next_permutation
 #define TC(t) while (t--)
-#define mod 1000000007
+const int mod=1000000007;
 #define count_set_bits __builtin_popcountll
 #define sz(x) ((int)(x).size())
 const int N=1e5+1;
