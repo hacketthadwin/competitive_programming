@@ -79,7 +79,8 @@ template <typename A>void __print(const A &x);template <typename A, typename B>v
 #endif
 /**************CODE_BEGINS_HERE************************************************/
 
-//this kosaraju function is the template which will give you components and adj_condensed based on the minimum element of the component
+//this kosaraju function is the template which will give you components 
+//and adj_condensed based on the minimum element of the component
 void kosaraju(vvi&adj, vvi&components, vvi&adj_cond)
 {
     int n=adj.size();
@@ -131,7 +132,7 @@ void kosaraju(vvi&adj, vvi&components, vvi&adj_cond)
             roots[v]=root;
         }
     }
-// components[i] stores all the original nodes present in the i-th Strongly Connected Component (SCC).
+// components[i] stores all the original nodes present in the i-th (SCC).
 // Every SCC is assigned a representative(root). The representative can be ANY node
 // of that SCC (minimum node, maximum node, first discovered node, etc.). It is only
 // used to uniquely identify that SCC. Here, the minimum numbered node is chosen.
