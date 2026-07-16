@@ -41,10 +41,29 @@ void convertToLowercase(string &str) {for (char &c : str) {if (c >= 'A' && c <= 
 int maximumrepitationofarray(int n,int arr[]){int count=0;int maxcount=1;int c= arr[0];rep(n){if(arr[i]==c){count++;if(count>maxcount){maxcount=count;}}else{count=1;c=arr[i];}}return maxcount;}
 bool poweroftwo(int n) {return !(n & (n - 1));}
 int power(int A, int B) {int res = 1;while (B > 0) {if (B % 2 == 1) {    res *= A;}A *= A;B /= 2;}return res;}
+
+//MATH FUNCTIONS
+
+// int modAdd(int a, int b, int mod) { return (a + b) % mod; } 
+// int modSubtract(int a, int b, int mod) { return (a - b + mod) % mod; } 
+// int modMultiply(int a, int b, int mod) { return (a * b) % mod; } 
+// int modExponentiation(int a, int b, int mod) { int result = 1; a = a % mod; while (b > 0) { if (b % 2 == 1) result = (result * a) % mod; b = b / 2; a = (a * a) % mod; } return result; } 
+// int modInverse(int a, int mod) { int m0 = mod, t, q, x0 = 0, x1 = 1; if (mod == 1) return 0; while (a > 1) { q = a / mod; t = mod; mod = a % mod; a = t; t = x0; x0 = x1 - q * x0; x1 = t; } if (x1 < 0) x1 += m0; return x1; } 
+// int modDivide(int a, int b, int mod) { int inv_b = modInverse(b, mod); if (inv_b == -1) { cout << "Modular inverse doesn't exist!" << endl; return -1; } return modMultiply(a, inv_b, mod); } 
+
 /*REMOVE LEADING ZEROES
 size_t pos = result.find_first_not_of('0');
 result = (pos == std::string::npos) ? "0" : result.substr(pos);
 */
+
+//Bit Manipulation functions
+int setBit(int n, int pos) { return n | (1 << pos); } // Set the bit at position pos in n
+int clearBit(int n, int pos) { return n & ~(1 << pos); } // Clear the bit at position pos in n
+int toggleBit(int n, int pos) { return n ^ (1 << pos); } // Toggle the bit at position pos in n
+int checkBit(int n, int pos) { return (n & (1 << pos)) != 0; } // Check if the bit at position pos in n is set
+int countSetBits(int n) { return __builtin_popcount(n); } // Count the number of set bits in n
+int countUnsetBits(int n) { return sizeof(n) * 8 - __builtin_popcount(n); } // Count the number of unset bits in n
+
 typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update>ordered_set;  //you can use less/greater/less_equal/greater_equal instead of less<int> as per your requirement
 #define fastio() ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr)
 void __print(long long x) { cerr << x; }void __print(unsigned x) { cerr << x; }void __print(unsigned long x) { cerr << x; }void __print(unsigned long long x) { cerr << x; }void __print(float x) { cerr << x; }void __print(double x) { cerr << x; }void __print(long double x) { cerr << x; }void __print(char x) { cerr << '\'' << x << '\''; }void __print(const char *x) { cerr << '\"' << x << '\"'; }void __print(const string &x) { cerr << '\"' << x << '\"'; }void __print(bool x) { cerr << (x ? "true" : "false"); }
